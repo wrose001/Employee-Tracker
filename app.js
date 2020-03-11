@@ -1,9 +1,10 @@
 const inquirer = require("inquirer");
 const mysql = require("mysql");
-const consoleTable = require("console.table");
+
+require("console.table");
 
 // create the connection information for the sql database
-var connection = mysql.createConnection({
+let connection = mysql.createConnection({
     host: "localhost",
 
     // Your port; if not 3306
@@ -60,18 +61,18 @@ function start() {
 
 // View Departments
 function viewDepartments() {
-    connection.query("SELECT * FROM departments", function(err, results) {
+    connection.query("SELECT name FROM departments", function(err, results) {
         if (err) throw err;
-        console.log(results);
+        console.table(results);
         start();
     });
 }
 
 // View Roles
 function viewRoles() {
-    connection.query("SELECT * FROM roles", function(err, results) {
+    connection.query("SELECT title FROM roles", function(err, results) {
         if (err) throw err;
-        console.log(results);
+        console.table(results);
         start();
     });
 }
@@ -87,6 +88,33 @@ function viewEmployees() {
 
 // Add Department
 function addDepartment() {
+    connection.query("SELECT * FROM employees", function(err, results) {
+        if (err) throw err;
+        console.log(results);
+        start();
+    });
+}
+
+// Add Role
+function addRole() {
+    connection.query("SELECT * FROM employees", function(err, results) {
+        if (err) throw err;
+        console.log(results);
+        start();
+    });
+}
+
+// Add Employee
+function addEmployee() {
+    connection.query("SELECT * FROM employees", function(err, results) {
+        if (err) throw err;
+        console.log(results);
+        start();
+    });
+}
+
+// Update Employee
+function updateEmployee() {
     connection.query("SELECT * FROM employees", function(err, results) {
         if (err) throw err;
         console.log(results);
