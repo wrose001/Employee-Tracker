@@ -2,7 +2,7 @@ USE employee_tracker;
 
 INSERT INTO departments (department)
 VALUES
-    ("legal"),
+    ("sales"),
     ("finance"),
     ("facilities"),
     ("engineering");

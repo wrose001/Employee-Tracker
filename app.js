@@ -70,7 +70,7 @@ function viewDepartments() {
 
 // View Roles
 function viewRoles() {
-    connection.query("SELECT roles.title, roles.salary, departments.department FROM roles left join departments on roles.departments_id = departments.id ORDER BY roles.id;", function (err, results) {
+    connection.query("SELECT roles.title, roles.salary, departments.department FROM roles left join departments on roles.departments_id = departments.departments_id ORDER BY roles.roles_id;", function (err, results) {
         if (err) throw err;
         console.table(results);
         start();
@@ -81,8 +81,8 @@ function viewRoles() {
 function viewEmployees() {
     connection.query(
         `SELECT employees.id, employees.first_name, employees.last_name, roles.title, departments.department, roles.salary FROM employees
-        left join roles on employees.roles_id = roles.id
-        left join departments on roles.departments_id = departments.id ORDER BY employees.id;`,
+        left join roles on employees.roles_id = roles.roles_id
+        left join departments on roles.departments_id = departments.departments_id ORDER BY employees.id;`,
         function (err, results) {
             if (err) throw err;
             console.table(results);
@@ -156,7 +156,7 @@ function addRole() {
 //adding role for department
 function roleChoice() {
     return new Promise((resolve, reject) => {
-        connection.query("Select id, title FROM roles", function (err, data) {
+        connection.query("Select roles_id, title FROM roles", function (err, data) {
             if (err) throw err;
             resolve(data);
         });
@@ -165,7 +165,7 @@ function roleChoice() {
 
 function addEmployee() {
     roleChoice().then(function (id) {
-        idRoles = id.map(roles => roles.id);
+        idRoles = id.map(roles => roles.roles_id);
         inquirer.prompt([{
                     name: "firstName",
                     type: "input",
@@ -197,19 +197,21 @@ function addEmployee() {
 //Updating employee role
 function employeeChoice(){
     return new Promise ((resolve, reject) => {
-        connection.query(`Select first_name, last_name FROM employees`, function (err, data){
+        connection.query(`Select first_name FROM employees`, function (err, data){
             if (err) throw err;
-            console.log(data);
+            console.log("jimmmayyyy", data);
             resolve(data);
         });
     });
 }
 
 function updateEmployee() {
-    let employeeList = [];
+    // let employeeList = [];
 
     employeeChoice().then(function (employees) {
         employeeList = employees.map(employees => employees.first_name)
+
+        // console.log('beckaayyy', employeeList);
 
         roleChoice().then(function (title) {
             titleList = title.map(roles => roles.title);
