@@ -204,3 +204,35 @@ function employeeChoice(){
         });
     });
 }
+
+function updateRole() {
+    let employeeList = [];
+
+    employeeChoice().then(function (employees) {
+        employeeList = employees.map(employees => employees.first_name)
+
+        roleChoice().then(function (title) {
+            titleList = title.map(roles => roles.title);
+
+            inquirer.prompt([{
+                name: "chooseEmployee",
+                type: "list",
+                message: "Which employee do you want to update?",
+                choices: employeeList
+            },
+            {
+                name: "updateTitle",
+                type: "list",
+                message: "What is the employee's new title?",
+                choices: titleList
+            }
+        ]).then(function (input){
+            connection.query(`INSERT INTO roles (title) VALUE ("${input.updateTitle}")`, function (err, res) {
+                if (err) throw err;
+
+            })
+            start();
+        })
+        })
+    })
+}
