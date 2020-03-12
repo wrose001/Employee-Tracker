@@ -205,7 +205,7 @@ function employeeChoice(){
     });
 }
 
-function updateRole() {
+function updateEmployee() {
     let employeeList = [];
 
     employeeChoice().then(function (employees) {
