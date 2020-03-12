@@ -193,3 +193,14 @@ function addEmployee() {
             });
     });
 }
+
+//Updating employee role
+function employeeChoice(){
+    return new Promise ((resolve, reject) => {
+        connection.query(`Select first_name, last_name FROM employees`, function (err, data){
+            if (err) throw err;
+            console.log(data);
+            resolve(data);
+        });
+    });
+}
