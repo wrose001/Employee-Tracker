@@ -1,6 +1,6 @@
 USE employee_tracker;
 
-INSERT INTO departments (name)
+INSERT INTO departments (department)
 VALUES
     ("legal"),
     ("finance"),
