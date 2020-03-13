@@ -113,7 +113,7 @@ function addDepartment() {
 //adding role for department
 function deptChoice() {
     return new Promise((resolve, reject) => {
-        connection.query("Select id, department FROM departments", function (err, data) {
+        connection.query("Select departments_id, department FROM departments", function (err, data) {
             if (err) throw err;
             resolve(data);
         })
@@ -122,7 +122,7 @@ function deptChoice() {
 // Add Role
 function addRole() {
     deptChoice().then(function (id) {
-        idList = id.map(departments => departments.id);
+        idList = id.map(departments => departments.departments_id);
         inquirer.prompt([{
                 name: "title",
                 type: "input",
