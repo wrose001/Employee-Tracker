@@ -17,7 +17,7 @@ This command line application is a content management system (CMS) that allows u
 * README for this project
 
 ## Images/GIF
-[GIF](/images/tracker.gif)
+![GIF](/images/tracker.gif)
 ​
 ## Built With
 ​
