@@ -17,9 +17,7 @@ This command line application is a content management system (CMS) that allows u
 * README for this project
 
 ## Images/GIF
-[GIF](/util/README.gif)
-​<br><br>
-[README Generator](/images/Generated_README.png) 
+[GIF](/images/tracker.gif)
 ​
 ## Built With
 ​
